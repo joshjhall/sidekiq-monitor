@@ -1,4 +1,4 @@
-FROM ruby
+FROM ruby:2.4-alpine
 
 RUN gem install rack sidekiq redis-namespace
 COPY config.ru config.ru
