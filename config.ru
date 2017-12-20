@@ -6,6 +6,9 @@
 # Required packages
 require 'sidekiq'
 
+# Set external encoding to avoid invalid byte sequence when displaying unicode
+Encoding.default_external = Encoding::UTF_8
+
 # Configure client
 Sidekiq.configure_client do |config|
   config.redis =
