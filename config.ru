@@ -1,7 +1,7 @@
 #!usr/bin/ruby
 
 # Sidekiq monitor
-# v1.0.1
+# v1.0.2
 
 # Required packages
 require 'sidekiq'

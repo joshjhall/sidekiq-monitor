@@ -1,6 +1,6 @@
-FROM ruby:2.4-alpine
+# Version v1.0.2
 
-# Version 2018-04-27
+FROM ruby:2.4-alpine
 
 RUN gem install rack sidekiq redis-namespace
 COPY config.ru config.ru
