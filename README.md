@@ -14,3 +14,4 @@ Uses the default sidekiq monitor port `9292` internally
 # Revision history
 2017-07-23: Initial commit
 2017-11-11: Update version of Sidekiq
+2018-04-27: Bump version
