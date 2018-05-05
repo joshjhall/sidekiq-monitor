@@ -1,8 +1,6 @@
 #!usr/bin/ruby
 
 # Sidekiq monitor
-# v1.0.2
-
 # Required packages
 require 'sidekiq'
 
@@ -13,16 +11,25 @@ Encoding.default_external = Encoding::UTF_8
 Sidekiq.configure_client do |config|
   config.redis =
     if ENV['REDIS_SENTINEL_SERVICE'].nil?
-      {
-      	url: (ENV['REDIS_URL'] || 'redis://redis'),
-      	namespace: (ENV['SIDEKIQ_NAMESPACE'] || 'default')
-      }
+      if ENV['SIDEKIQ_NAMESPACE'].nil?
+        { url: (ENV['REDIS_URL'] || 'redis://redis') }
+      else
+        {
+          url: (ENV['REDIS_URL'] || 'redis://redis'),
+          namespace: (ENV['SIDEKIQ_NAMESPACE'] || 'default')
+        }
     else
-      {
-        url: (ENV['REDIS_URL'] || 'redis://mymaster'),
-        namespace: (ENV['SIDEKIQ_NAMESPACE'] || 'default'),
-        sentinels: [{ host: ENV['REDIS_SENTINEL_SERVICE'], port: '26379' }]
-      }
+      if ENV['SIDEKIQ_NAMESPACE'].nil?
+        {
+          url: (ENV['REDIS_URL'] || 'redis://redis'),
+          sentinels: [{ host: ENV['REDIS_SENTINEL_SERVICE'], port: '26379' }]
+        }
+      else
+        {
+          url: (ENV['REDIS_URL'] || 'redis://mymaster'),
+          namespace: (ENV['SIDEKIQ_NAMESPACE'] || 'default'),
+          sentinels: [{ host: ENV['REDIS_SENTINEL_SERVICE'], port: '26379' }]
+        }
     end
 end
 
