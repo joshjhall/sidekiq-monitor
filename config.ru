@@ -18,6 +18,7 @@ Sidekiq.configure_client do |config|
           url: (ENV['REDIS_URL'] || 'redis://redis'),
           namespace: (ENV['SIDEKIQ_NAMESPACE'] || 'default')
         }
+      end
     else
       if ENV['SIDEKIQ_NAMESPACE'].nil?
         {
@@ -30,6 +31,7 @@ Sidekiq.configure_client do |config|
           namespace: (ENV['SIDEKIQ_NAMESPACE'] || 'default'),
           sentinels: [{ host: ENV['REDIS_SENTINEL_SERVICE'], port: '26379' }]
         }
+      end
     end
 end
 
