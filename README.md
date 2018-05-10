@@ -26,8 +26,9 @@ docker run -d \
 
 
 # Revision history
-2017-07-23: Initial commit
-2017-11-11: Update version of Sidekiq
-2018-04-27: Bump version
-2018-05-05: Support without namespace
-2018-05-10: Improved readme
+
+* 2017-07-23: Initial commit
+* 2017-11-11: Update version of Sidekiq
+* 2018-04-27: Bump version
+* 2018-05-05: Support without namespace
+* 2018-05-10: Improved readme
