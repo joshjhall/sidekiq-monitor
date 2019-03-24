@@ -3,6 +3,7 @@
 # Sidekiq monitor
 # Required packages
 require 'sidekiq'
+require 'sidekiq-status'
 
 # Set external encoding to avoid invalid byte sequence when displaying unicode
 Encoding.default_external = Encoding::UTF_8
@@ -37,4 +38,5 @@ end
 
 require 'set'
 require 'sidekiq/web'
+require 'sidekiq-status/web'
 run Sidekiq::Web
