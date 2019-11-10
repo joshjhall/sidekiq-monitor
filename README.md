@@ -27,7 +27,7 @@ This is a simple docker container to monitor sidekiq queues.
 
 ### Add basic auth to the sidekiq monitor
 
-This was borrowed/stole this idea from @Hunk13.  Optionally add basic auth to the sidekiq monitor.  This will only be enabled if both a username and password are set.
+This idea was borrowed/stolen from @Hunk13.  Optionally add basic auth to the sidekiq monitor.  This will only be enabled if both a username and password are set.
 
 `SIDEKIQ_USERNAME` = Username (e.g., `deckard`)
 
