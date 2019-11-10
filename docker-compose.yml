@@ -1,0 +1,29 @@
+# Example compose file
+version: "3.4"
+
+services:
+  redis:
+    image: redis:latest
+    environment:
+      - --appendonly=yes
+    volumes:
+      - redis-data:/data
+
+  sidekiq:
+    image: joshjhall/sidekiq-monitor:latest
+    depends_on:
+      - redis
+    environment:
+      REDIS_URL: redis://redis:6379
+      SIDEKIQ_STATUS: enable
+      SIDEKIQ_UNIQUE_JOBS: enable
+      SIDEKIQ_FAILURES: enable
+      SIDEKIQ_NAMESPACE: sample
+      RAILS_ENV: development
+      SIDEKIQ_USERNAME: test
+      SIDEKIQ_PASSWORD: test
+    ports:
+      - 9292:9292
+
+volumes:
+  redis-data:

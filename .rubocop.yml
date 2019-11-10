@@ -1,0 +1,6 @@
+require: rubocop-performance
+
+# Baseline cops copied from common Rails standards
+inherit_from: config/default.yml
+
+# Customizations
