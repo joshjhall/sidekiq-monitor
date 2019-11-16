@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Change working directory to where the script is located
+cd "$(dirname "$0")"
+
 # Pull pre-requesite container
 docker pull ruby:2.6-alpine
 
