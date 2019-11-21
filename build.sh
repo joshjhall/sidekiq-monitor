@@ -14,4 +14,4 @@ docker push joshjhall/sidekiq-monitor
 
 # Delete local images to clean things up
 docker rmi ruby:2.6-alpine
-docker rmi joshjhall/sid ekiq-monitor
+docker rmi joshjhall/sidekiq-monitor
