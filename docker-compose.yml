@@ -14,7 +14,7 @@ services:
     depends_on:
       - redis
     environment:
-      REDIS_URL: redis://redis:6379
+      REDIS_HOST: redis
       SIDEKIQ_STATUS: enable
       SIDEKIQ_UNIQUE_JOBS: enable
       SIDEKIQ_FAILURES: enable

@@ -7,7 +7,14 @@ require "sidekiq/web"
 # Set external encoding to avoid invalid byte sequence when displaying unicode
 Encoding.default_external = Encoding::UTF_8
 
-settings = { url: (ENV["REDIS_URL"] || "redis://redis:6379") }
+# Check if we should use the REDIS_HOST instead of REDIS_URL variable
+if ENV['REDIS_URL'].to_s.strip.empty? && !ENV['REDIS_HOST'].to_s.strip.empty?
+  redis_url = "redis://#{ENV['REDIS_HOST']}:#{ENV['REDIS_PORT']}"
+else
+  redis_url = ENV['REDIS_URL']
+end
+
+settings = { url: (redis_url || "redis://redis:6379") }
 
 # Add namespace if configured
 unless ENV["SIDEKIQ_NAMESPACE"].nil?

@@ -5,7 +5,15 @@ This is a simple docker container to monitor sidekiq queues.
 
 ### Redis
 
-`REDIS_URL` = Redis URL (e.g., `redis://redis.local:6379`).  Defaults to `redis://redis:6379` for common stack/service arrangments.
+`REDIS_URL` = Redis URL (e.g., `redis://redis_local:6379`).  This will override `REDIS_HOST` and `REDIS_PORT`, because the host and port are part of the URL.  So, do not set this envrionment variable if you want to use the host/port instead.
+
+`REDIS_HOST` = Redis hostname only (e.g., `redis_local`).  This can be used in conjunction with `REDIS_PORT`.  When using docker-compose or a stack, this is usually all you'll need to set for the Redis connection (see `docker-compose.yml` example)
+
+`REDIS_PORT` = Redis port used with the hostname.  This defaults to `6379`.
+
+If neither `REDIS_URL` nor `REDIS_HOST` are set, it defaults to `redis://redis:6379` for common stack/service arrangments.
+
+### Redis Sentinel
 
 `REDIS_SENTINEL_SERVICE_URL` = Optionally use the sentinel service (e.g., `redis://sentinel.local`).
 
@@ -56,6 +64,7 @@ docker run -d \
 
 # Revision history
 
+* 2019-11-20: Added optional use of REDIS_HOST/REDIS_PORT instead of REDIS_URL to simplify initialization in some circumstances
 * 2019-11-10: Added optional sidekiq unique jobs and sidekiq failures plugin support
 * 2019-11-10: Added optional basic auth
 * 2019-11-10: Decompose URL and port environment variables for Redis Sentinel

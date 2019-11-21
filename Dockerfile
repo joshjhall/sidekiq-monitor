@@ -1,10 +1,11 @@
-# Version v1.2
+# Version v1.3
 
 FROM ruby:2.6-alpine
 
 LABEL repository="joshjhall/sidekiq-monitor"
 LABEL maintainer="josh@yaplabs.com"
 
+# Install dependencies
 RUN gem install \
     rack \
     sidekiq \
@@ -13,17 +14,25 @@ RUN gem install \
     sidekiq-failures \
     sidekiq-unique-jobs
 
+# Copy config.ru
 COPY config.ru config.ru
 
-ENV REDIS_URL="redis://redis:6379"
+# Configure environment variables
 ENV RAILS_ENV="development"
-ENV REDIS_SENTINEL_SERVICE_URL, \
-    REDIS_SENTINEL_SERVICE_PORT, \
-    SIDEKIQ_NAMESPACE, \
-    SIDEKIQ_STATUS, \
-    SIDEKIQ_USERNAME, \
-    SIDEKIQ_PASSWORD
+ENV REDIS_PORT="6379"
 
+# Optional envrionment variables used, but not set during build
+# ENV REDIS_SENTINEL_SERVICE_URL
+# ENV REDIS_SENTINEL_SERVICE_PORT
+# ENV SIDEKIQ_NAMESPACE
+# ENV SIDEKIQ_STATUS
+# ENV SIDEKIQ_USERNAME
+# ENV SIDEKIQ_PASSWORD
+# ENV REDIS_URL
+# ENV REDIS_HOST
+
+# Expose port
 EXPOSE 9292
 
+# Set initial command
 CMD rackup config.ru --host 0.0.0.0
