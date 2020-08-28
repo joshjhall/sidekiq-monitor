@@ -56,4 +56,5 @@ if ENV["SIDEKIQ_FAILURES"].to_s.downcase == "enable"
 end
 
 # Start the web interface
-run Sidekiq::Web
+web_url = ENV['SIDEKIQ_URL'] || '/'
+run Rack::URLMap.new web_url => Sidekiq::Web
