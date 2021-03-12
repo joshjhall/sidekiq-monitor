@@ -1,6 +1,10 @@
 # Introduction
 This is a simple docker container to monitor sidekiq queues.
 
+## Releases
+
+The `stable` tag will be released very conservatively.  The `latest` tag should work fine, but may occasionally break.  Production environments should always use the `stable` release.
+
 ## Environment variables
 
 ### Redis
@@ -49,7 +53,7 @@ Uses the default sidekiq web port `9292` internally
 
 ## Example
 ```
-docker run -d \
+docker run -it \
   --name sidekiq \
   -p 9292:9292 \
   -e "REDIS_URL=redis://redis.local" \
@@ -58,12 +62,13 @@ docker run -d \
   -e "REDIS_SENTINEL_SERVICE_URL=redis://sentinel" \
   -e "REDIS_SENTINEL_SERVICE_PORT=22666" \
   -e "RAILS_ENV=production" \
-  joshjhall/sidekiq-monitor
+  joshjhall/sidekiq-monitor:stable
 ```
 
 
 # Revision history
 
+* 2021-03-12: Decomposed into stable and latest releases, so latest can be migrated to Ruby 3.x
 * 2019-11-20: Added optional use of REDIS_HOST/REDIS_PORT instead of REDIS_URL to simplify initialization in some circumstances
 * 2019-11-10: Added optional sidekiq unique jobs and sidekiq failures plugin support
 * 2019-11-10: Added optional basic auth
