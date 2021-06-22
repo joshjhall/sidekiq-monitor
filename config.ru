@@ -8,10 +8,10 @@ require "sidekiq/web"
 Encoding.default_external = Encoding::UTF_8
 
 # Check if we should use the REDIS_HOST instead of REDIS_URL variable
-if ENV['REDIS_URL'].to_s.strip.empty? && !ENV['REDIS_HOST'].to_s.strip.empty?
-  redis_url = "redis://#{ENV['REDIS_HOST']}:#{ENV['REDIS_PORT']}"
+if ENV["REDIS_URL"].to_s.strip.empty? && !ENV["REDIS_HOST"].to_s.strip.empty?
+  redis_url = "redis://#{ENV["REDIS_HOST"]}:#{ENV["REDIS_PORT"]}"
 else
-  redis_url = ENV['REDIS_URL']
+  redis_url = ENV["REDIS_URL"]
 end
 
 settings = { url: (redis_url || "redis://redis:6379") }
