@@ -4,5 +4,5 @@
 cd "$(dirname "$0")"
 
 # Build all
-./bld_latest.sh
-./bld_stable.sh
+./bld_development.sh
+./bld_production.sh

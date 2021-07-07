@@ -1,6 +1,6 @@
-# Version v1.4
+# Version v1.5
 
-FROM ruby:3.0-alpine
+FROM ruby:3.0.2-alpine
 
 LABEL repository="joshjhall/sidekiq-monitor"
 LABEL maintainer="josh@yaplabs.com"
@@ -13,7 +13,8 @@ RUN gem install \
     redis-namespace \
     sidekiq-status \
     sidekiq-failures \
-    sidekiq-unique-jobs
+    sidekiq-unique-jobs \
+    securerandom
 
 # Copy config.ru
 COPY config.ru config.ru
