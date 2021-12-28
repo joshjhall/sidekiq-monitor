@@ -3,6 +3,7 @@
 require "set"
 require "sidekiq"
 require "sidekiq/web"
+require "securerandom"
 
 # Set external encoding to avoid invalid byte sequence when displaying unicode
 Encoding.default_external = Encoding::UTF_8
@@ -54,6 +55,14 @@ end
 if ENV["SIDEKIQ_FAILURES"].to_s.downcase == "enable"
   require "sidekiq-failures"
 end
+
+# Create random session key
+File.open(".session.key", "w") do |f|
+  f.write(SecureRandom.hex(32))
+end
+
+# Add session cookie middleware
+use Rack::Session::Cookie, secret: File.read(".session.key"), same_site: true, max_age: 86400
 
 # Start the web interface
 web_url = ENV['SIDEKIQ_URL'] || '/'
