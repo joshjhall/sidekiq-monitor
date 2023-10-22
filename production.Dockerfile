@@ -5,6 +5,9 @@ FROM ruby:3.2.2-alpine
 LABEL repository="joshjhall/sidekiq-monitor"
 LABEL maintainer="josh@yaplabs.com"
 
+# Update base gems
+RUN gem update
+
 # Install dependencies
 RUN gem install \
     rack \
