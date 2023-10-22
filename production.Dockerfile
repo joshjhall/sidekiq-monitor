@@ -1,6 +1,6 @@
 # Version v1.5
 
-FROM ruby:3.0.2-alpine
+FROM ruby:3.2.2-alpine
 
 LABEL repository="joshjhall/sidekiq-monitor"
 LABEL maintainer="josh@yaplabs.com"
@@ -34,6 +34,7 @@ ENV REDIS_PORT="6379"
 # ENV SIDEKIQ_PASSWORD
 # ENV REDIS_URL
 # ENV REDIS_HOST
+# ENV SIDEKIQ_URL
 
 # Expose port
 EXPOSE 9292
