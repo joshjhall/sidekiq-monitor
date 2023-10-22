@@ -4,9 +4,13 @@
 cd "$(dirname "$0")"
 
 # Build the images
-docker build --file production.Dockerfile -t joshjhall/sidekiq-monitor:production .
-docker tag joshjhall/sidekiq-monitor:production joshjhall/sidekiq-monitor:latest
-
-# Push images
-docker push joshjhall/sidekiq-monitor:production
-docker push joshjhall/sidekiq-monitor:latest
+docker buildx build \
+  --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/s390x,linux/ppc64le \
+  --file production.Dockerfile \
+  -t joshjhall/sidekiq-monitor:production \
+  --push .
+docker buildx build \
+  --platform linux/amd64,linux/arm/v6,linux/arm/v7,linux/s390x,linux/ppc64le \
+  --file production.Dockerfile \
+  -t joshjhall/sidekiq-monitor:latest \
+  --push .
