@@ -71,6 +71,9 @@ docker run -it \
 
 # Revision history
 
+* 2023-10-22: Added multiple architectures to the image build process
+* 2023-10-22: Updated to Ruby 3.2.2 along with a few minor version updates to dependencies
+* 2023-10-22: Merged a couple PRs I totally missed earlier
 * 2021-07-22: Added optional parameter SIDEKIQ_URL to mount web UI on a sub path
 * 2021-07-07: Updated both tags to Ruby 3.0.2.  Renamed tags as production and development (latest is a synonym for production).
 * 2021-03-12: Decomposed into stable and latest releases, so latest can be migrated to Ruby 3.x
