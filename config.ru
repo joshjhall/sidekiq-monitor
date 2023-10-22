@@ -65,4 +65,5 @@ end
 use Rack::Session::Cookie, secret: File.read(".session.key"), same_site: true, max_age: 86400
 
 # Start the web interface
-run Sidekiq::Web
+web_url = ENV['SIDEKIQ_URL'] || '/'
+run Rack::URLMap.new web_url => Sidekiq::Web

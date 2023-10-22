@@ -50,6 +50,8 @@ This idea was borrowed/stolen from @Hunk13.  Optionally add basic auth to the si
 
 Uses the default sidekiq web port `9292` internally
 
+`SIDEKIQ_URL` = the url to mount the web UI on (default: '/')
+
 
 ## Example
 ```
@@ -62,12 +64,14 @@ docker run -it \
   -e "REDIS_SENTINEL_SERVICE_URL=redis://sentinel" \
   -e "REDIS_SENTINEL_SERVICE_PORT=22666" \
   -e "RAILS_ENV=production" \
+  -e "SIDEKIQ_URL=/admin/queue \
   joshjhall/sidekiq-monitor:stable
 ```
 
 
 # Revision history
 
+* 2021-07-22: Added optional parameter SIDEKIQ_URL to mount web UI on a sub path
 * 2021-07-07: Updated both tags to Ruby 3.0.2.  Renamed tags as production and development (latest is a synonym for production).
 * 2021-03-12: Decomposed into stable and latest releases, so latest can be migrated to Ruby 3.x
 * 2019-11-20: Added optional use of REDIS_HOST/REDIS_PORT instead of REDIS_URL to simplify initialization in some circumstances
