@@ -38,6 +38,12 @@ if ENV["SIDEKIQ_STATUS"].to_s.downcase == "enable"
   require "sidekiq-status/web"
 end
 
+# Optionally include sidekiq scheduler plugin
+if ENV["SIDEKIQ_SCHEDULER"].to_s.downcase == "enable"
+  require "sidekiq-scheduler"
+  require "sidekiq-scheduler/web"
+end
+
 # Optionally use basic auth to sign into sidekiq
 unless (ENV["SIDEKIQ_USERNAME"].nil? && ENV["SIDEKIQ_PASSWORD"].nil?)
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|

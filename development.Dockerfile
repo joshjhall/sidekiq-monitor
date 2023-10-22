@@ -11,6 +11,8 @@ RUN gem install \
     sidekiq \
     webrick \
     redis-namespace \
+    tzinfo-data \
+    sidekiq-scheduler \
     sidekiq-status \
     sidekiq-failures \
     sidekiq-unique-jobs \
