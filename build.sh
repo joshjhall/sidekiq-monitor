@@ -3,6 +3,6 @@
 # Change working directory to where the script is located
 cd "$(dirname "$0")"
 
-# Build all
+# Build and push both dev and production
 ./bld_development.sh
 ./bld_production.sh
